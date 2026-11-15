@@ -1,0 +1,51 @@
+/* Design tokens — the single source of truth for colour, type and spacing. */
+:root {
+  /* Colour */
+  --c-bg: #050505;
+  --c-text: #ffffff;
+  --c-lime: #dfff00;
+  --c-lime-hover: #eaff4d;
+  --c-lavender: #bca5ff;
+  --c-cream: #f8f1ec;
+  --c-cream-deep: #f1e8e1;
+  --c-muted: #b8b8b8;
+  --c-card: #111111;
+  --c-border: #292929;
+  --c-ink: #0b0b0b;
+  --c-ink-soft: #8d8782;
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', Inter, system-ui, -apple-system,
+    'Segoe UI', sans-serif;
+  --font-script: 'Satisfy', 'Brush Script MT', cursive;
+  --font-hand: 'Damion', 'Brush Script MT', cursive;
+
+  --tracking: -0.035em; /* Plus Jakarta Sans runs wide; the design sets it tight */
+  --tracking-tight: -0.05em;
+  --word-gap: 0.1em; /* restores a natural word space after tightening */
+
+  --fw-body: 450;
+
+  --fs-micro: 0.6rem;
+  --fs-tiny: 0.66rem;
+  --fs-small: 0.75rem;
+  --fs-nav: 0.78rem;
+  --fs-lead: 0.94rem;
+  --fs-h2: 1.8rem;
+
+  /* Layout — the reference is a 1024px artboard, i.e. 64rem at a 16px root. */
+  --page-max: 64rem;
+  --gutter: 2rem;
+  --inset: 2.1875rem; /* text inset inside a section, on top of the gutter */
+  --nav-h: 3.5rem;
+
+  /* Shape */
+  --r-pill: 999px;
+  --r-card: 0.75rem;
+  --r-panel: 1.15rem;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast: 180ms;
+  --t-base: 320ms;
+}

@@ -1,0 +1,179 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*
+ * Fluid root size: from 1024px up the whole layout scales with the viewport
+ * (1rem = 1/64 of the width) so desktop keeps the reference proportions
+ * exactly, capped at a 1536px artboard. Below 1024px the root is fixed and
+ * the components switch to their stacked layouts.
+ */
+html {
+  font-size: clamp(100%, 1.5625vw, 150%);
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-h);
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (max-width: 1023px) {
+  html {
+    font-size: 125%;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-body);
+  line-height: 1.35;
+  letter-spacing: var(--tracking);
+  word-spacing: var(--word-gap);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+figure,
+blockquote {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--c-lime);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.section--cream :focus-visible,
+.on-cream :focus-visible {
+  outline-color: var(--c-ink);
+}
+
+::selection {
+  background: var(--c-lime);
+  color: var(--c-ink);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border-radius: var(--r-pill);
+  background: var(--c-lime);
+  color: var(--c-ink);
+  font-weight: 700;
+  transition: top var(--t-fast) var(--ease);
+}
+
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Shared section heading block (pill + title + text + button) used by the
+   Projects, Impact and Blog intros. */
+.section-title {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: var(--tracking-tight);
+}
+
+.section-text {
+  font-size: var(--fs-small);
+  line-height: 1.34;
+  color: var(--c-text);
+}
+
+/* Reveal-on-scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(1rem);
+  transition:
+    opacity 600ms var(--ease) var(--reveal-delay, 0ms),
+    transform 600ms var(--ease) var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
