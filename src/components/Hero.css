@@ -44,6 +44,7 @@
   position: relative;
   margin-top: -0.44rem;
   font-size: 4.87rem;
+  letter-spacing: -0.058em;
   color: var(--c-lime);
 }
 
