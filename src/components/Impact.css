@@ -1,0 +1,251 @@
+.impact__inner {
+  display: grid;
+  grid-template-columns: 40rem 1fr;
+  align-items: start;
+  gap: 1.25rem;
+  padding-bottom: 0.4rem;
+}
+
+/* ---------- Stats card ---------- */
+.impact__card {
+  display: flex;
+  align-items: center;
+  height: 10.125rem;
+  padding: 0 1.5rem 0 var(--inset);
+  border: 1px solid #1f1f1f;
+  border-radius: var(--r-panel);
+  background: #0d0d0d;
+}
+
+.impact__intro {
+  flex: none;
+  width: 13.125rem;
+  padding-bottom: 0.1rem;
+}
+
+.impact__title {
+  max-width: 9.5rem;
+  margin: 0.6rem 0 0.62rem;
+  font-size: 1.76rem;
+}
+
+.impact__intro .section-text {
+  max-width: 12.2rem;
+}
+
+.impact__stats {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-self: center;
+  margin-top: -0.2rem;
+}
+
+.impact__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 5.5rem;
+  border-left: 1px solid #2f2f2f;
+  text-align: center;
+}
+
+.impact__icon {
+  font-size: 1.6rem;
+  color: var(--c-lime);
+}
+
+.impact__value {
+  margin-top: 0.5rem;
+  font-size: 1.42rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+}
+
+.impact__label {
+  margin-top: 0.5rem;
+  font-size: 0.64rem;
+  line-height: 1;
+}
+
+/* ---------- Testimonial ---------- */
+.testimonial {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 9.56rem;
+  padding: 1.95rem 1.6rem 1.15rem 3.44rem;
+  border-radius: var(--r-panel);
+  background: var(--c-cream);
+  color: var(--c-ink);
+  animation: testimonial-in 420ms var(--ease);
+}
+
+.testimonial__mark {
+  position: absolute;
+  left: 1.1rem;
+  top: 1.15rem;
+  width: 1.75rem;
+  color: #cdf000;
+}
+
+.testimonial__quote p {
+  font-size: var(--fs-small);
+  line-height: 1.31;
+}
+
+.testimonial__author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.9rem 0 0 -1.2rem;
+}
+
+.testimonial__avatar {
+  flex: none;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.testimonial__avatar--initials {
+  display: grid;
+  place-items: center;
+  background: var(--c-ink);
+  color: var(--c-lime);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.testimonial__who {
+  display: grid;
+  gap: 0.22rem;
+  margin-right: auto;
+}
+
+.testimonial__name {
+  font-size: 0.69rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.testimonial__role {
+  font-size: 0.59rem;
+  line-height: 1;
+}
+
+.testimonial__stars {
+  display: flex;
+  gap: 0.16rem;
+  margin-top: 0.7rem;
+  font-size: 0.78rem;
+  color: #cdf000;
+}
+
+.testimonials__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+/* The visible dot is 8px; the button around it is larger so it is easy to tap. */
+.testimonials__dot {
+  display: grid;
+  place-items: center;
+  width: 0.82rem;
+  height: 1rem;
+}
+
+.testimonials__dot::before {
+  content: '';
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #6b6b6b;
+  transition:
+    background-color var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--ease);
+}
+
+.testimonials__dot:hover::before {
+  background: #9a9a9a;
+}
+
+.testimonials__dot.is-active::before {
+  background: var(--c-lime);
+  transform: scale(1.1);
+}
+
+@keyframes testimonial-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.4rem);
+  }
+}
+
+/* ---------- Tablet & mobile ---------- */
+@media (max-width: 1023px) {
+  .impact__inner {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    padding-block: 1.2rem 1.6rem;
+  }
+
+  .impact__card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.6rem;
+    height: auto;
+    padding: 1.6rem 1.4rem 1.7rem;
+  }
+
+  .impact__intro {
+    width: auto;
+  }
+
+  .impact__title,
+  .impact__intro .section-text {
+    max-width: none;
+  }
+
+  .impact__stats {
+    align-self: stretch;
+    margin-top: 0;
+  }
+
+  .impact__stat:first-child {
+    border-left: 0;
+  }
+
+  .testimonial {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 479px) {
+  .impact__stats {
+    margin-inline: -0.6rem;
+  }
+
+  .impact__value {
+    font-size: 1.25rem;
+  }
+
+  .impact__label {
+    font-size: 0.58rem;
+  }
+
+  .testimonial {
+    padding-left: 3rem;
+  }
+
+  .testimonial__author {
+    flex-wrap: wrap;
+  }
+}
