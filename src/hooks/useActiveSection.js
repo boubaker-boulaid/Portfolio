@@ -1,19 +1,37 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+// How long a click on a nav link "owns" the active state while the page
+// smooth-scrolls past other sections on its way to the target.
+const CLICK_LOCK_MS = 1200;
+// The reading line, as a fraction of the viewport height. Just above the middle
+// so the short closing sections still get a fair share of the scroll range.
+const READING_LINE = 0.45;
+// Sections whose tops are this close together are treated as one row.
+const SAME_ROW_PX = 160;
+
 /**
  * Scroll-spy for the navigation.
  *
  * The active section is the last one whose top has passed a reading line
- * 35% down the viewport. Sections that sit side by side (About / Skills on
- * desktop) share a top edge, so the later one only wins if the visitor
- * explicitly navigated to it — `select(id)` records that choice.
+ * a little above the middle of the viewport. Two cases need more than that:
+ *
+ * - Sections that sit side by side (About / Skills on desktop) share a top
+ *   edge, so the later one can only win if the visitor chose it.
+ * - Sections near the end of the page may never reach the reading line, so
+ *   at the very bottom every section still on screen is a candidate and the
+ *   last one wins by default.
+ *
+ * `select(id)` records an explicit choice; it stays active for as long as
+ * that section remains a candidate.
  */
 export function useActiveSection(ids) {
   const [active, setActive] = useState(ids[0]);
   const picked = useRef(null);
+  const lockedUntil = useRef(0);
 
   const select = useCallback((id) => {
     picked.current = id;
+    lockedUntil.current = performance.now() + CLICK_LOCK_MS;
     setActive(id);
   }, []);
 
@@ -22,24 +40,36 @@ export function useActiveSection(ids) {
 
     const measure = () => {
       frame = 0;
-      const line = window.innerHeight * 0.35;
-      const tops = ids.map((id) => document.getElementById(id)?.getBoundingClientRect().top);
+      if (performance.now() < lockedUntil.current) return;
 
-      let group = [];
-      ids.forEach((id, i) => {
-        const top = tops[i];
-        if (top === undefined || top > line) return;
-        const sameRow = group.length > 0 && Math.abs(top - tops[ids.indexOf(group[0])]) < 160;
-        group = sameRow ? [...group, id] : [id];
-      });
+      const line = window.innerHeight * READING_LINE;
+      const tops = Object.fromEntries(
+        ids.map((id) => [id, document.getElementById(id)?.getBoundingClientRect().top]),
+      );
 
-      const atBottom =
-        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
-      if (atBottom) group = [ids[ids.length - 1]];
-      if (group.length === 0) group = [ids[0]];
+      // Candidates: the last row of sections that has crossed the reading line.
+      let candidates = [];
+      for (const id of ids) {
+        const top = tops[id];
+        if (top === undefined || top > line) continue;
+        const sameRow = candidates.length > 0 && Math.abs(top - tops[candidates[0]]) < SAME_ROW_PX;
+        candidates = sameRow ? [...candidates, id] : [id];
+      }
+      if (candidates.length === 0) candidates = [ids[0]];
+      let fallback = candidates[0];
 
-      if (!group.includes(picked.current)) picked.current = null;
-      setActive(picked.current ?? group[0]);
+      const page = document.documentElement;
+      const atBottom = window.innerHeight + window.scrollY >= page.scrollHeight - 4;
+      if (atBottom) {
+        const start = ids.indexOf(candidates[0]);
+        candidates = ids.filter(
+          (id, i) => i >= start && tops[id] !== undefined && tops[id] < window.innerHeight,
+        );
+        fallback = candidates[candidates.length - 1] ?? ids[ids.length - 1];
+      }
+
+      if (!candidates.includes(picked.current)) picked.current = null;
+      setActive(picked.current ?? fallback);
     };
 
     const onScroll = () => {
