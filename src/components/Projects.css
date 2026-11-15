@@ -1,0 +1,221 @@
+.projects__inner {
+  display: grid;
+  grid-template-columns: 16.125rem 1fr;
+  align-items: start;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: 1.625rem 3.8rem 1.56rem calc(var(--gutter) + var(--inset));
+}
+
+/* ---------- Intro ---------- */
+.projects__intro {
+  padding-top: 0.06rem;
+}
+
+.projects__title {
+  position: relative;
+  width: max-content;
+  margin-top: 0.46rem;
+}
+
+.projects__burst {
+  position: absolute;
+  left: calc(100% + 0.45rem);
+  top: -0.5rem;
+  width: 1.7rem;
+  color: var(--c-lavender);
+}
+
+.projects__text {
+  max-width: 12.4rem;
+  margin-top: 0.9rem;
+}
+
+.projects__more {
+  margin-top: 0.95rem;
+}
+
+/* ---------- Grid & cards ---------- */
+.projects__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem 1.13rem;
+}
+
+.project {
+  position: relative;
+}
+
+.project__badge {
+  position: absolute;
+  top: -0.28rem;
+  right: 0.42rem;
+  z-index: 2;
+  height: 1.34rem;
+  padding-inline: 0.72rem;
+  font-size: 0.69rem;
+  text-transform: none;
+}
+
+.project__frame {
+  overflow: hidden;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-card);
+  background: var(--c-card);
+  transition:
+    transform var(--t-base) var(--ease),
+    border-color var(--t-base) var(--ease),
+    box-shadow var(--t-base) var(--ease);
+}
+
+.project:hover .project__frame {
+  border-color: #444;
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1.2rem 2.4rem rgba(0, 0, 0, 0.55);
+}
+
+/* The screenshot sits on a moody backdrop as an angled screen. */
+.project__media {
+  position: relative;
+  height: 8rem;
+  overflow: hidden;
+  perspective: 30rem;
+  background:
+    radial-gradient(90% 80% at 15% 5%, rgba(255, 255, 255, 0.16), transparent 60%),
+    linear-gradient(150deg, #3b3842 0%, #17161b 70%);
+}
+
+.project:nth-child(3n + 2) .project__media {
+  background:
+    radial-gradient(90% 80% at 85% 0%, rgba(188, 165, 255, 0.5), transparent 62%),
+    linear-gradient(200deg, #3a2a86 0%, #130f2e 72%);
+}
+
+.project:nth-child(3n) .project__media {
+  background:
+    radial-gradient(80% 80% at 10% 10%, rgba(255, 255, 255, 0.5), transparent 60%),
+    linear-gradient(150deg, #cdbcae 0%, #6f625b 75%);
+}
+
+.project__shot {
+  position: absolute;
+  left: 11%;
+  top: 14%;
+  width: 96%;
+  max-width: none;
+  border-radius: 0.3rem;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    -0.6rem 1rem 1.8rem rgba(0, 0, 0, 0.55);
+  transform-origin: 0 50%;
+  transform: rotateY(-20deg) rotateX(5deg) rotateZ(1.5deg);
+  transition: transform 700ms var(--ease);
+}
+
+.project:nth-child(3n + 2) .project__shot {
+  left: -7%;
+  transform-origin: 100% 50%;
+  transform: rotateY(20deg) rotateX(5deg) rotateZ(-1.5deg);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0.6rem 1rem 1.8rem rgba(0, 0, 0, 0.55);
+}
+
+.project:hover .project__shot {
+  transform: rotateY(-13deg) rotateX(3deg) rotateZ(1deg) scale(1.06);
+}
+
+.project:nth-child(3n + 2):hover .project__shot {
+  transform: rotateY(13deg) rotateX(3deg) rotateZ(-1deg) scale(1.06);
+}
+
+.project__body {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: -0.75rem;
+  padding: 0.44rem 0.7rem 0.48rem 0.66rem;
+  border-radius: var(--r-card) var(--r-card) 0 0;
+  background: var(--c-card);
+}
+
+.project__title {
+  font-size: var(--fs-nav);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.project__stack {
+  display: flex;
+  align-items: center;
+  margin-top: 0.3rem;
+  font-size: 0.625rem;
+  color: var(--c-muted);
+}
+
+.project__stack > span {
+  display: inline-flex;
+  align-items: center;
+}
+
+.project__sep {
+  width: 0.2rem;
+  height: 0.2rem;
+  margin-inline: 0.28rem;
+  border-radius: 50%;
+  background: var(--c-lime);
+}
+
+.project__link {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--c-ink);
+  font-size: 0.8rem;
+  transition:
+    background-color var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--ease);
+}
+
+.project__link:hover,
+.project:hover .project__link {
+  background: var(--c-lime);
+}
+
+.project__link:hover {
+  transform: rotate(45deg);
+}
+
+/* ---------- Tablet & mobile ---------- */
+@media (max-width: 1023px) {
+  .projects__inner {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+    padding: 2.6rem var(--gutter) 1.6rem;
+  }
+
+  .projects__text {
+    max-width: 24rem;
+  }
+
+  .projects__grid {
+    gap: 1.4rem 0.8rem;
+  }
+
+  .project__media {
+    height: auto;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 679px) {
+  .projects__grid {
+    grid-template-columns: 1fr;
+  }
+}
