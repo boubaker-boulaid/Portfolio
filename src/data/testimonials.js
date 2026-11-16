@@ -6,7 +6,7 @@ export const testimonials = [
   {
     id: 'houatnour',
     quote:
-      'Un stagiaire sérieux et rigoureux : son application a remplacé nos fichiers Excel. Nous le recommandons vivement !',
+      'Travail sérieux et livré dans les délais : notre gestion de stock est enfin simple et fiable. Merci Boubaker !',
     lang: 'fr',
     name: 'HOUATNOUR',
     role: 'Grossiste en viandes et volailles, Aoulouz',

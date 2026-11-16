@@ -1,5 +1,5 @@
 .footer {
-  padding: 1.9rem 0 3.1rem;
+  padding: var(--section-gap) 0 3.1rem;
 }
 
 .footer__row {

@@ -169,22 +169,6 @@
   margin-top: 0.56rem;
 }
 
-.skills__more {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem;
-  max-width: 23.2rem;
-  margin-top: 0.7rem;
-}
-
-.skills__more li {
-  padding: 0.28rem 0.55rem;
-  border: 1px solid #ddd2c9;
-  border-radius: var(--r-pill);
-  font-size: 0.56rem;
-  font-weight: 600;
-  line-height: 1;
-}
 
 .skill {
   display: flex;
@@ -280,14 +264,6 @@
 
   .skill__name {
     font-size: 0.68rem;
-  }
-
-  .skills__more {
-    max-width: none;
-  }
-
-  .skills__more li {
-    font-size: 0.72rem;
   }
 }
 

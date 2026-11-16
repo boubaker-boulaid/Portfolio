@@ -39,14 +39,3 @@ export const skills = [
   { name: 'Linux', logo: linux },
 ];
 
-// Resume skills that have no logo, shown as tags under the grid.
-export const moreSkills = [
-  'REST API design',
-  'Laravel Sanctum',
-  'Pest (PHPUnit)',
-  'Queues & scheduled jobs',
-  'RBAC',
-  'Token authentication',
-  'Rate limiting',
-  'Audit logging',
-];

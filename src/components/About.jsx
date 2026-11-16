@@ -1,7 +1,7 @@
 import Pill from './ui/Pill.jsx';
 import Reveal from './ui/Reveal.jsx';
 import { Burst, Heart, Sparks, Underline } from './ui/Doodles.jsx';
-import { moreSkills, skills } from '../data/skills.js';
+import { skills } from '../data/skills.js';
 import aboutPortrait from '../assets/portraits/about-portrait.webp';
 import './About.css';
 
@@ -59,11 +59,6 @@ export default function About() {
                 <img className="skill__logo" src={logo} alt="" width="40" height="40" loading="lazy" />
                 <span className="skill__name">{name}</span>
               </li>
-            ))}
-          </ul>
-          <ul className="skills__more" aria-label="More skills">
-            {moreSkills.map((name) => (
-              <li key={name}>{name}</li>
             ))}
           </ul>
         </Reveal>

@@ -30,7 +30,6 @@ All copy and links live in `src/data` — no component changes needed.
 
 - [ ] Add the sixth project to `src/data/projects.js` (the stats say 6).
 - [ ] Confirm the stacks and repositories marked `TODO` in `src/data/projects.js`.
-- [ ] Replace the Task Manager mockup (`src/assets/projects/task-manager.webp`) with a real screenshot if you have one.
 - [ ] Optional: set `formEndpoint` in `src/data/site.js` (e.g. Formspree) so the contact form sends messages directly instead of opening the visitor's email app.
 - [ ] Re-export `public/Boubaker-Boulaid-CV.pdf` whenever the resume in `../info` changes.
 

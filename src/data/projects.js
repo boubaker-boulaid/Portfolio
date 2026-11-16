@@ -1,6 +1,5 @@
 import ecommerceStore from '../assets/projects/ecommerce-store.webp';
 import adminDashboard from '../assets/projects/admin-dashboard.webp';
-import taskManager from '../assets/projects/task-manager.webp';
 import libraryManagement from '../assets/projects/library-management.webp';
 import perfumeStore from '../assets/projects/perfume-store.webp';
 import { site } from './site.js';
@@ -55,18 +54,6 @@ export const projects = [
     stack: ['Laravel', 'Tailwind CSS'],
     image: ecommerceStore,
     alt: 'Home page of a shoe store with a featured sneaker and a Shop Now button',
-    url: site.social.github,
-    featured: false,
-  },
-  {
-    id: 'task-manager',
-    title: 'Task Manager',
-    category: 'Web App',
-    tone: 'lime',
-    // TODO: confirm the stack and repository; the image is a rendered mockup.
-    stack: ['Laravel', 'React'],
-    image: taskManager,
-    alt: 'Task board with To Do, In Progress and Done columns',
     url: site.social.github,
     featured: false,
   },

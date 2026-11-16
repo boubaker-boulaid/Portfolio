@@ -39,6 +39,7 @@
   --gutter: 2rem;
   --inset: 2.1875rem; /* text inset inside a section, on top of the gutter */
   --nav-h: 3.5rem;
+  --section-gap: 3.25rem; /* vertical space between sections */
 
   /* Shape */
   --r-pill: 999px;

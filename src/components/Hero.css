@@ -178,8 +178,8 @@
 }
 
 .stat-card--projects {
-  left: 74.9%;
-  top: 25.8%;
+  left: 79%;
+  top: 52%;
   width: 7.06em;
 }
 
@@ -397,7 +397,7 @@
   .stat-card--projects {
     left: auto;
     right: 0;
-    top: 22%;
+    top: 48%;
   }
 
   .stat-card--experience {
