@@ -4,6 +4,8 @@ import Pill from './ui/Pill.jsx';
 import Icon from './ui/Icon.jsx';
 import Reveal from './ui/Reveal.jsx';
 import { mailto, site, tel } from '../data/site.js';
+import { useMotion } from '../motion/useMotion.js';
+import { revealUp } from '../motion/presets.js';
 import './Contact.css';
 
 const EMPTY = { name: '', email: '', subject: '', message: '' };
@@ -41,6 +43,13 @@ export default function Contact() {
   const [fields, setFields] = useState(EMPTY);
   const [status, setStatus] = useState('idle');
 
+  const ref = useMotion(() => {
+    revealUp('.contact__intro > *', { trigger: '.contact__intro', start: 'top 80%' });
+    revealUp('.contact__details li', { trigger: '.contact__details', start: 'top 90%', delay: 0.2, stagger: 0.07 });
+    revealUp('.contact__form', { y: 48, duration: 1.1, start: 'top 82%' });
+    revealUp('.contact__form > *', { trigger: '.contact__form', start: 'top 82%', y: 16, delay: 0.25, stagger: 0.07 });
+  });
+
   const update = (event) => setFields((prev) => ({ ...prev, [event.target.name]: event.target.value }));
 
   const onSubmit = async (event) => {
@@ -56,7 +65,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="contact" aria-labelledby="contact-title">
+    <section ref={ref} id="contact" className="contact" aria-labelledby="contact-title">
       <div className="contact__inner">
         <Reveal className="contact__intro">
           <Pill>Contact</Pill>
@@ -85,7 +94,7 @@ export default function Contact() {
           </ul>
         </Reveal>
 
-        <Reveal delay={90}>
+        <Reveal className="contact__formwrap">
           <form className="contact__form on-cream" onSubmit={onSubmit}>
             <div className="contact__row">
               <label className="field">

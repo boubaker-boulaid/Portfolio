@@ -5,6 +5,8 @@ import Reveal from './ui/Reveal.jsx';
 import { QuoteMark } from './ui/Doodles.jsx';
 import { impactStats } from '../data/site.js';
 import { testimonials } from '../data/testimonials.js';
+import { useMotion } from '../motion/useMotion.js';
+import { drawIn, revealUp } from '../motion/presets.js';
 import './Impact.css';
 
 const initials = (name) =>
@@ -65,8 +67,19 @@ function Testimonials() {
 }
 
 export default function Impact() {
+  const ref = useMotion(() => {
+    revealUp('.impact__card', { y: 40, duration: 1, start: 'top 80%' });
+    revealUp('.impact__intro > *', { trigger: '.impact__card', start: 'top 80%', delay: 0.15 });
+    revealUp('.impact__stat', { trigger: '.impact__stats', start: 'top 85%', delay: 0.3, stagger: 0.1 });
+    revealUp('.impact__quote', { y: 40, duration: 1, start: 'top 85%', delay: 0.15 });
+    drawIn('.testimonial__mark path', {
+      delay: 0.5,
+      scrollTrigger: { trigger: '.impact__quote', start: 'top 85%', once: true },
+    });
+  });
+
   return (
-    <section id="impact" className="impact" aria-labelledby="impact-title">
+    <section ref={ref} id="impact" className="impact" aria-labelledby="impact-title">
       <div className="container impact__inner">
         <Reveal className="impact__card">
           <div className="impact__intro">
@@ -87,7 +100,7 @@ export default function Impact() {
           </ul>
         </Reveal>
 
-        <Reveal delay={120}>
+        <Reveal className="impact__quote">
           <Testimonials />
         </Reveal>
       </div>

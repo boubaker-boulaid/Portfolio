@@ -5,6 +5,9 @@ import SocialLinks from './ui/SocialLinks.jsx';
 import { Blob, Bolt, Crown, LoopArrow, Scribble, Squiggle } from './ui/Doodles.jsx';
 import { heroStats, site } from '../data/site.js';
 import heroPortrait from '../assets/portraits/hero-portrait.webp';
+import { gsap } from '../motion/gsap.js';
+import { useMotion } from '../motion/useMotion.js';
+import { drawIn, riseIn, wipeIn } from '../motion/presets.js';
 import './Hero.css';
 
 function StatCard({ stat }) {
@@ -24,8 +27,36 @@ function StatCard({ stat }) {
 }
 
 export default function Hero() {
+  const ref = useMotion(({ desktop }, root) => {
+    // Entrance: copy builds line by line while the portrait settles in.
+    const tl = gsap.timeline({ delay: 0.15 });
+    tl.from('.hero__copy .pill', { opacity: 0, y: 12, duration: 0.6 })
+      .add(riseIn(['.hero__hi', '.hero__name']), '-=0.35')
+      .add(wipeIn('.hero__last', { duration: 0.85 }), '-=0.6')
+      .add(drawIn('.hero__scribble path', { duration: 0.7 }), '-=0.25')
+      .from('.hero__crown', { opacity: 0, y: -10, scale: 0.8, duration: 0.6 }, '<')
+      .from('.hero__lead', { opacity: 0, y: 16, duration: 0.8 }, '-=0.55')
+      .from('.hero__actions > *', { opacity: 0, y: 14, duration: 0.7, stagger: 0.08 }, '-=0.6')
+      .from('.hero__arrow', { opacity: 0, duration: 0.8 }, '-=0.5');
+
+    tl.from('.hero__blob', { opacity: 0, scale: 0.9, transformOrigin: '50% 60%', duration: 1.4, ease: 'expo.out' }, 0.2)
+      // Fade the photo quickly (so the blob never tints it) but let it settle slowly.
+      .from('.hero__portrait', { y: 36, duration: 1.3, ease: 'expo.out' }, 0.15)
+      .from('.hero__portrait', { opacity: 0, duration: 0.45, ease: 'power1.out' }, 0.15)
+      // Stat cards float with a CSS animation on transform, so only fade them.
+      .from('.stat-card', { opacity: 0, duration: 0.8, stagger: 0.15 }, 1.05)
+      .from('.hero__rail > *', { opacity: 0, x: 10, duration: 0.6, stagger: 0.06 }, 0.9);
+
+    // Subtle depth on the way out: the portrait drifts slower than the page.
+    if (desktop) {
+      const out = { trigger: root, start: 'top top', end: 'bottom top', scrub: true };
+      gsap.to('.hero__portrait', { yPercent: 7, ease: 'none', scrollTrigger: out });
+      gsap.to('.hero__blob', { yPercent: 4, ease: 'none', scrollTrigger: out });
+    }
+  });
+
   return (
-    <section id="home" className="hero" aria-labelledby="hero-title">
+    <section ref={ref} id="home" className="hero" aria-labelledby="hero-title">
       <div className="hero__inner">
         <div className="hero__copy">
           <Pill tone="outline" dot>

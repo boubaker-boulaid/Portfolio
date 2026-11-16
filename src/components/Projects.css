@@ -95,11 +95,29 @@
   max-width: none;
   object-fit: cover;
   object-position: top center;
-  transition: transform 700ms var(--ease);
+  /*
+   * Scroll parallax drives --shift (via `translate`) and hover zoom drives
+   * `scale`, so the two never fight. --zoom is raised a little when motion is
+   * on, so the parallax never shows the frame's edges.
+   */
+  translate: 0 var(--shift, 0);
+  scale: var(--zoom, 1);
+  transition: scale 700ms var(--ease);
 }
 
 .project:hover .project__shot {
-  transform: scale(1.05);
+  scale: calc(var(--zoom, 1) * 1.06);
+}
+
+/* Hovering one card gently steps the others back. */
+@media (hover: hover) {
+  .project {
+    transition: opacity var(--t-base) var(--ease);
+  }
+
+  .projects__grid:has(.project:hover) .project:not(:hover) {
+    opacity: 0.55;
+  }
 }
 
 .project__body {

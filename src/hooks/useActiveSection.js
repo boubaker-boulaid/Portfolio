@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 // How long a click on a nav link "owns" the active state while the page
-// smooth-scrolls past other sections on its way to the target.
-const CLICK_LOCK_MS = 1200;
+// smooth-scrolls (Lenis, ~1.15s) past other sections on its way to the target.
+const CLICK_LOCK_MS = 1400;
 // The reading line, as a fraction of the viewport height. Just above the middle
 // so the short closing sections still get a fair share of the scroll range.
 const READING_LINE = 0.45;

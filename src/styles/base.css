@@ -12,7 +12,11 @@
  */
 html {
   font-size: clamp(100%, 1.5625vw, 150%);
-  scroll-behavior: smooth;
+  /*
+   * No CSS smooth scrolling: Lenis animates scrolling (and anchor links) when
+   * motion is allowed, and ScrollTrigger would otherwise re-apply an inline
+   * scroll-behavior that fights it. Reduced-motion visitors get instant jumps.
+   */
   scroll-padding-top: var(--nav-h);
   -webkit-text-size-adjust: 100%;
 }
@@ -145,35 +149,12 @@ button {
   color: var(--c-text);
 }
 
-/* Reveal-on-scroll */
-.reveal {
-  opacity: 0;
-  transform: translateY(1rem);
-  transition:
-    opacity 600ms var(--ease) var(--reveal-delay, 0ms),
-    transform 600ms var(--ease) var(--reveal-delay, 0ms);
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-
-  .reveal {
-    opacity: 1;
-    transform: none;
   }
 }

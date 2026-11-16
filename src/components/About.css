@@ -81,7 +81,7 @@
 }
 
 .about__hey {
-  display: inline;
+  display: inline-block; /* so its entrance can lift it */
   font-size: 1.7rem;
   line-height: 1.1;
 }

@@ -4,6 +4,8 @@ import Button from './ui/Button.jsx';
 import Icon from './ui/Icon.jsx';
 import { navLinks } from '../data/site.js';
 import { useActiveSection } from '../hooks/useActiveSection.js';
+import { useMotion } from '../motion/useMotion.js';
+import { gsap } from '../motion/gsap.js';
 import './Navbar.css';
 
 export default function Navbar() {
@@ -11,6 +13,9 @@ export default function Navbar() {
   const [active, select] = useActiveSection(ids);
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const ref = useMotion(() => {
+    gsap.from('.nav__inner', { opacity: 0, y: -12, duration: 0.8, delay: 0.1 });
+  });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -39,7 +44,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className={`nav ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`.trim()}>
+    <header ref={ref} className={`nav ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`.trim()}>
       <div className="nav__inner">
         <Logo onClick={() => go('home')} />
 

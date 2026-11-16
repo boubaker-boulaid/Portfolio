@@ -5,12 +5,15 @@ import Icon from './ui/Icon.jsx';
 import Reveal from './ui/Reveal.jsx';
 import { Burst } from './ui/Doodles.jsx';
 import { projects } from '../data/projects.js';
+import { gsap, ScrollTrigger } from '../motion/gsap.js';
+import { useMotion } from '../motion/useMotion.js';
+import { drawIn, revealTiles, revealUp } from '../motion/presets.js';
 import './Projects.css';
 
-function ProjectCard({ project, delay }) {
+function ProjectCard({ project }) {
   const { title, category, tone, stack, image, alt, url } = project;
   return (
-    <Reveal as="li" className="project" delay={delay}>
+    <Reveal as="li" className="project" data-featured={project.featured || undefined}>
       <Pill tone={tone} className="project__badge">
         {category}
       </Pill>
@@ -60,8 +63,60 @@ export default function Projects() {
   const hasMore = projects.some((project) => !project.featured);
   const visible = showAll ? projects : projects.filter((project) => project.featured);
 
+  // Intro and the featured cards: revealed once, as the section arrives.
+  const ref = useMotion(() => {
+    revealUp('.projects__intro > *', { trigger: '.projects__intro', start: 'top 80%' });
+    drawIn('.projects__burst path', {
+      stagger: 0.08,
+      delay: 0.4,
+      scrollTrigger: { trigger: '.projects__intro', start: 'top 80%', once: true },
+    });
+    // revealTiles pauses the cards' hover transitions while they animate.
+    revealTiles('.project[data-featured]', {
+      trigger: '.projects__grid',
+      start: 'top 82%',
+      y: 56,
+      scale: 1,
+      duration: 1,
+      stagger: 0.12,
+    });
+  });
+
+  // Parallax inside every card's frame (rebuilt when cards are added), and a
+  // soft entrance for the cards that "View All Projects" brings in.
+  const extraRef = useMotion(
+    (_, root) => {
+      root.querySelectorAll('.project__media').forEach((media) => {
+        gsap.set(media, { '--zoom': 1.1 });
+        gsap.fromTo(
+          media,
+          { '--shift': '-4.5%' },
+          {
+            '--shift': '4.5%',
+            ease: 'none',
+            scrollTrigger: { trigger: media, start: 'top bottom', end: 'bottom top', scrub: true },
+          },
+        );
+      });
+
+      if (showAll) {
+        revealTiles('.project:not([data-featured])', { start: 'top 98%', y: 40, scale: 1, duration: 0.8, stagger: 0.1 });
+      }
+      ScrollTrigger.refresh();
+    },
+    [showAll],
+  );
+
   return (
-    <section id="projects" className="projects" aria-labelledby="projects-title">
+    <section
+      ref={(node) => {
+        ref.current = node;
+        extraRef.current = node;
+      }}
+      id="projects"
+      className="projects"
+      aria-labelledby="projects-title"
+    >
       <div className="projects__inner">
         <Reveal className="projects__intro">
           <Pill>My Work</Pill>
@@ -87,8 +142,8 @@ export default function Projects() {
         </Reveal>
 
         <ul id="projects-grid" className="projects__grid">
-          {visible.map((project, i) => (
-            <ProjectCard key={project.id} project={project} delay={(i % 3) * 90} />
+          {visible.map((project) => (
+            <ProjectCard key={project.id} project={project} />
           ))}
         </ul>
       </div>

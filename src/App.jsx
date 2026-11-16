@@ -6,8 +6,11 @@ import Impact from './components/Impact.jsx';
 import Contact from './components/Contact.jsx';
 import ContactCta from './components/ContactCta.jsx';
 import Footer from './components/Footer.jsx';
+import { useSmoothScroll } from './motion/useSmoothScroll.js';
 
 export default function App() {
+  useSmoothScroll();
+
   return (
     <>
       <a className="skip-link" href="#main">
