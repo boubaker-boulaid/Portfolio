@@ -23,7 +23,7 @@ export default function Footer() {
           <SocialLinks className="footer__socials" />
         </div>
         <p className="footer__copy">
-          © {new Date().getFullYear()} {site.name}. All rights reserved.
+          © {new Date().getFullYear()} {site.fullName}. All rights reserved.
         </p>
       </div>
     </footer>

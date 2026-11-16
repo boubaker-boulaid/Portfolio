@@ -2,28 +2,35 @@
 
 export const site = {
   name: 'Boubaker',
+  fullName: 'Boubaker Boulaid',
   role: 'Full-Stack Developer',
   tagline:
-    'I build modern web applications with Laravel, and turn ideas into powerful digital products.',
-  // TODO: replace with your public contact address.
-  email: 'your-email@example.com',
-  // TODO: drop your CV into /public with this file name (or change the path).
-  cvUrl: '/Boubaker-CV.pdf',
+    'I build secure Laravel back ends and responsive React front ends — REST APIs, dashboards and online stores that replace spreadsheets with real products.',
+  email: 'boubakerboulaid205@gmail.com',
+  phone: '+212 6 93 30 31 30',
+  location: 'Agadir region, Morocco',
+  availability: 'Open to remote work and relocation',
+  cvUrl: '/Boubaker-Boulaid-CV.pdf',
+  /*
+   * Optional: a form endpoint (e.g. Formspree "https://formspree.io/f/xxxx")
+   * that accepts a JSON POST. When empty, the contact form opens the visitor's
+   * email app with the message already filled in.
+   */
+  formEndpoint: '',
   social: {
     github: 'https://github.com/boubaker-boulaid',
-    // TODO: replace with your LinkedIn profile URL.
-    linkedin: 'https://www.linkedin.com/',
+    linkedin: 'https://www.linkedin.com/in/boubaker-boulaid',
   },
 };
 
 export const mailto = `mailto:${site.email}`;
+export const tel = `tel:${site.phone.replace(/\s+/g, '')}`;
 
 export const navLinks = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
   { id: 'skills', label: 'Skills' },
   { id: 'projects', label: 'Projects' },
-  { id: 'blog', label: 'Blog' },
   { id: 'contact', label: 'Contact' },
 ];
 
@@ -34,18 +41,18 @@ export const socialLinks = [
 ];
 
 export const heroStats = [
-  { id: 'projects', label: 'Projects', value: '12+', note: 'Completed', icon: 'arrow-up-right' },
+  { id: 'projects', label: 'Projects', value: '6', note: 'Completed', icon: 'arrow-up-right' },
   {
     id: 'experience',
-    label: 'Years of Experience',
-    value: '2+',
+    label: 'Year of Experience',
+    value: '1',
     note: 'Growing Stronger',
     icon: 'rocket',
   },
 ];
 
 export const impactStats = [
-  { id: 'projects', value: '12+', label: 'Projects', icon: 'folder' },
-  { id: 'users', value: '1K+', label: 'Happy Users', icon: 'users' },
-  { id: 'experience', value: '2+', label: 'Years Experience', icon: 'clock' },
+  { id: 'projects', value: '6', label: 'Projects', icon: 'folder' },
+  { id: 'endpoints', value: '47', label: 'API Endpoints Shipped', icon: 'code' },
+  { id: 'experience', value: '1', label: 'Year Experience', icon: 'clock' },
 ];

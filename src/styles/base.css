@@ -131,7 +131,7 @@ button {
 }
 
 /* Shared section heading block (pill + title + text + button) used by the
-   Projects, Impact and Blog intros. */
+   Projects, Impact and Contact intros. */
 .section-title {
   font-size: var(--fs-h2);
   font-weight: 800;

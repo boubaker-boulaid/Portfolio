@@ -3,7 +3,7 @@ import Hero from './components/Hero.jsx';
 import About from './components/About.jsx';
 import Projects from './components/Projects.jsx';
 import Impact from './components/Impact.jsx';
-import Blog from './components/Blog.jsx';
+import Contact from './components/Contact.jsx';
 import ContactCta from './components/ContactCta.jsx';
 import Footer from './components/Footer.jsx';
 
@@ -19,7 +19,7 @@ export default function App() {
         <About />
         <Projects />
         <Impact />
-        <Blog />
+        <Contact />
         <ContactCta />
       </main>
       <Footer />

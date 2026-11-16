@@ -16,7 +16,7 @@ export default function About() {
             <img
               className="polaroid__img"
               src={aboutPortrait}
-              alt="Boubaker smiling slightly, photographed against a pale sky"
+              alt="Boubaker Boulaid smiling slightly, photographed against a pale sky"
               width="436"
               height="399"
               loading="lazy"
@@ -36,8 +36,10 @@ export default function About() {
             </span>
           </h2>
           <p className="about__text">
-            I’m a passionate Full-Stack Developer with a strong focus on <strong>Laravel</strong>. I
-            love building clean, scalable and user-friendly web applications.
+            I’m a Full-Stack Developer specialising in <strong>Laravel</strong> and{' '}
+            <strong>React</strong>. During my internship at HOUATNOUR I shipped a 47-endpoint REST
+            API that replaced spreadsheets and paper logs. I hold a Diploma in Digital Development
+            (OFPPT) and speak Arabic, Tamazight, English and French.
           </p>
           <p className="about__hand">
             Let’s build something amazing!

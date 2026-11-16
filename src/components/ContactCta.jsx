@@ -6,7 +6,7 @@ import './ContactCta.css';
 
 export default function ContactCta() {
   return (
-    <section id="contact" className="cta" aria-labelledby="cta-title">
+    <section id="lets-talk" className="cta" aria-labelledby="cta-title">
       <div className="container">
         <Reveal className="cta__card">
           <PaperPlane className="cta__plane" />

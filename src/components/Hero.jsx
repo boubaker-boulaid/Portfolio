@@ -59,7 +59,7 @@ export default function Hero() {
           <img
             className="hero__portrait"
             src={heroPortrait}
-            alt="Portrait of Boubaker wearing a black hoodie and a denim jacket"
+            alt="Portrait of Boubaker Boulaid wearing a black hoodie and a denim jacket"
             width="562"
             height="530"
             fetchPriority="high"

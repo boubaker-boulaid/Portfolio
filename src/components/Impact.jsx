@@ -23,7 +23,7 @@ function Testimonials() {
     <div className="testimonials">
       <figure className="testimonial on-cream" key={current.id} aria-live="polite">
         <QuoteMark className="testimonial__mark" />
-        <blockquote className="testimonial__quote">
+        <blockquote className="testimonial__quote" lang={current.lang}>
           <p>{current.quote}</p>
         </blockquote>
         <figcaption className="testimonial__author">
@@ -74,7 +74,7 @@ export default function Impact() {
             <h2 id="impact-title" className="section-title impact__title">
               Numbers That Speak
             </h2>
-            <p className="section-text">A quick look at what I’ve achieved so far in my journey.</p>
+            <p className="section-text">A quick look at what I’ve shipped so far in my journey.</p>
           </div>
           <ul className="impact__stats">
             {impactStats.map(({ id, value, label, icon }) => (

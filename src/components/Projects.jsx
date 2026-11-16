@@ -38,15 +38,17 @@ function ProjectCard({ project, delay }) {
               ))}
             </p>
           </div>
-          <a
-            className="project__link"
-            href={url}
-            target="_blank"
-            rel="noreferrer noopener"
-            aria-label={`View ${title}`}
-          >
-            <Icon name="arrow-up-right" />
-          </a>
+          {url && (
+            <a
+              className="project__link"
+              href={url}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label={`View ${title}`}
+            >
+              <Icon name="arrow-up-right" />
+            </a>
+          )}
         </div>
       </article>
     </Reveal>
@@ -68,8 +70,8 @@ export default function Projects() {
             <Burst className="projects__burst" />
           </h2>
           <p className="section-text projects__text">
-            A selection of my recent work, showcasing my skills and creativity with real-world
-            projects.
+            Real-world work, from client systems built during my internship to full-stack apps
+            with tested APIs.
           </p>
           {hasMore && (
             <Button

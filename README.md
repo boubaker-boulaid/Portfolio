@@ -1,4 +1,4 @@
-# Boubaker — Portfolio
+# Boubaker Boulaid — Portfolio
 
 My official portfolio: a single-page site for a Full-Stack Developer, built with React and Vite.
 
@@ -21,20 +21,18 @@ All copy and links live in `src/data` — no component changes needed.
 
 | File | What it controls |
 | --- | --- |
-| `site.js` | Name, tagline, email, CV path, social links, nav items, hero and impact stats |
+| `site.js` | Name, tagline, email, phone, location, CV path, contact-form endpoint, social links, nav items, hero and impact stats |
 | `projects.js` | Project cards. `featured: true` cards are always shown; the rest appear under "View All Projects" |
 | `skills.js` | Skill grid (name + logo) |
-| `articles.js` | Blog cards, their dates and URLs, and the "View All Articles" target |
-| `testimonials.js` | Testimonial slider |
+| `testimonials.js` | Testimonial slider (feedback from HOUATNOUR, in French) |
 
 ### Before publishing
 
-- [ ] Set your real **email** and **LinkedIn** URL in `src/data/site.js`.
-- [ ] Add your CV as `public/Boubaker-CV.pdf` (or change `cvUrl`).
-- [ ] Replace the **placeholder testimonials** in `src/data/testimonials.js` with real client quotes.
-- [ ] Point each project's `url` at its live site or repository, and confirm the stacks marked `TODO`.
+- [ ] Add the sixth project to `src/data/projects.js` (the stats say 6).
+- [ ] Confirm the stacks and repositories marked `TODO` in `src/data/projects.js`.
 - [ ] Replace the Task Manager mockup (`src/assets/projects/task-manager.webp`) with a real screenshot if you have one.
-- [ ] Give each article a real `url` and date once it is published.
+- [ ] Optional: set `formEndpoint` in `src/data/site.js` (e.g. Formspree) so the contact form sends messages directly instead of opening the visitor's email app.
+- [ ] Re-export `public/Boubaker-Boulaid-CV.pdf` whenever the resume in `../info` changes.
 
 ## Project structure
 
@@ -45,8 +43,7 @@ src/
     tokens.css             design tokens: colours, type, spacing, motion
     base.css               reset, fluid root size, shared helpers
   components/
-    Navbar, Hero, About, Projects, Impact, Blog, ContactCta, Footer
-    ArticleThumb           CSS/SVG blog thumbnails
+    Navbar, Hero, About, Projects, Impact, Contact (form), ContactCta, Footer
     ui/                    Button, Pill, Icon, Logo, SocialLinks, Reveal, Doodles
   hooks/useActiveSection   scroll-spy for the navigation
   data/                    all editable content

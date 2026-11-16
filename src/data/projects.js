@@ -8,64 +8,65 @@ import { site } from './site.js';
 /*
  * `featured` projects are always visible; the rest appear when the visitor
  * presses "View All Projects". `url` is where the card's arrow button goes —
- * point it at the live site or the repository.
+ * point it at the live site or the repository, or set it to null to hide the
+ * button (e.g. for private client work).
  */
 export const projects = [
   {
-    id: 'ecommerce-store',
-    title: 'E-Commerce Store',
-    category: 'Web App',
+    id: 'perfume-store',
+    title: 'Perfume E-commerce Platform',
+    category: 'E-Commerce',
     tone: 'lime',
-    stack: ['Laravel', 'Vue.js'],
-    image: ecommerceStore,
-    alt: 'Home page of a shoe store with a featured sneaker and a Shop Now button',
-    url: site.social.github,
+    stack: ['Laravel 12', 'React 19'],
+    image: perfumeStore,
+    alt: 'Perfume shop landing page with a bottle on a stone pedestal',
+    url: 'https://github.com/boubaker-boulaid/perfume-online-shop',
     featured: true,
   },
   {
-    id: 'admin-dashboard',
-    title: 'Admin Dashboard',
-    category: 'Dashboard',
+    id: 'stock-management',
+    title: 'Stock Management System',
+    category: 'Internship',
     tone: 'lavender',
-    stack: ['Laravel', 'Livewire'],
+    stack: ['Laravel', 'MySQL', 'Sanctum'],
     image: adminDashboard,
     alt: 'Stock management dashboard with sales, stock value and alert summary cards',
-    url: site.social.github,
-    featured: true,
-  },
-  {
-    id: 'task-manager',
-    title: 'Task Manager',
-    category: 'SaaS',
-    tone: 'lime',
-    stack: ['Laravel', 'Inertia.js'],
-    // Rendered mockup — swap for a real screenshot when one is available.
-    image: taskManager,
-    alt: 'Task board with To Do, In Progress and Done columns',
-    url: site.social.github,
+    // Client project built during my internship at HOUATNOUR — code is private.
+    url: null,
     featured: true,
   },
   {
     id: 'library-management',
-    title: 'Library Management',
+    title: 'Multilingual Library System',
     category: 'Web App',
-    tone: 'lavender',
-    // TODO: confirm the stack for this project.
-    stack: ['Laravel', 'Tailwind CSS'],
+    tone: 'lime',
+    stack: ['Laravel 12', 'Livewire'],
     image: libraryManagement,
     alt: 'Library site home page with a book search field',
+    url: 'https://github.com/boubaker-boulaid/library_management_system',
+    featured: true,
+  },
+  {
+    id: 'ecommerce-store',
+    title: 'Shoe Store',
+    category: 'E-Commerce',
+    tone: 'lavender',
+    // TODO: confirm the stack and repository for this project.
+    stack: ['Laravel', 'Tailwind CSS'],
+    image: ecommerceStore,
+    alt: 'Home page of a shoe store with a featured sneaker and a Shop Now button',
     url: site.social.github,
     featured: false,
   },
   {
-    id: 'perfume-store',
-    title: 'Perfume Store',
-    category: 'E-Commerce',
+    id: 'task-manager',
+    title: 'Task Manager',
+    category: 'Web App',
     tone: 'lime',
-    // TODO: confirm the stack for this project.
-    stack: ['Laravel', 'Tailwind CSS'],
-    image: perfumeStore,
-    alt: 'Perfume shop landing page with a bottle on a stone pedestal',
+    // TODO: confirm the stack and repository; the image is a rendered mockup.
+    stack: ['Laravel', 'React'],
+    image: taskManager,
+    alt: 'Task board with To Do, In Progress and Done columns',
     url: site.social.github,
     featured: false,
   },
