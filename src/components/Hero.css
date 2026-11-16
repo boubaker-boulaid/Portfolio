@@ -10,7 +10,7 @@
 .hero__inner {
   position: relative;
   max-width: var(--page-max);
-  height: 26.5rem;
+  height: 28.5rem;
   margin-inline: auto;
 }
 
@@ -87,10 +87,11 @@
 }
 
 .hero__lead {
-  max-width: 14.6rem;
+  max-width: 20.5rem;
   margin: 1.5rem 0 0 0.16rem;
-  font-size: var(--fs-lead);
-  line-height: 1.3;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #e9e9e9;
 }
 
 .hero__actions {

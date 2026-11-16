@@ -1,8 +1,7 @@
 import Pill from './ui/Pill.jsx';
 import Reveal from './ui/Reveal.jsx';
 import { Burst, Heart, Sparks, Underline } from './ui/Doodles.jsx';
-import { skills } from '../data/skills.js';
-import { site } from '../data/site.js';
+import { moreSkills, skills } from '../data/skills.js';
 import aboutPortrait from '../assets/portraits/about-portrait.webp';
 import './About.css';
 
@@ -16,7 +15,7 @@ export default function About() {
             <img
               className="polaroid__img"
               src={aboutPortrait}
-              alt="Boubaker smiling slightly, photographed against a pale sky"
+              alt="Boubaker Boulaid smiling slightly, photographed against a pale sky"
               width="436"
               height="399"
               loading="lazy"
@@ -29,15 +28,17 @@ export default function About() {
         <Reveal className="about__copy" delay={80}>
           <Pill tone="lavender">About Me</Pill>
           <h2 id="about-title" className="about__title">
-            <span className="about__hey">Hey, I’m</span>{' '}
+            <span className="about__hey">Get to Know</span>{' '}
             <span className="about__name">
-              {site.name}
+              Me
               <Heart className="about__heart" />
             </span>
           </h2>
           <p className="about__text">
-            I’m a passionate Full-Stack Developer with a strong focus on <strong>Laravel</strong>. I
-            love building clean, scalable and user-friendly web applications.
+            I’m a Full-Stack Developer specialising in <strong>Laravel</strong> and{' '}
+            <strong>React</strong>. During my internship at HOUATNOUR I shipped a 47-endpoint REST
+            API that replaced spreadsheets and paper logs. I hold a Diploma in Digital Development
+            (OFPPT) and speak Arabic, Tamazight, English and French.
           </p>
           <p className="about__hand">
             Let’s build something amazing!
@@ -58,6 +59,11 @@ export default function About() {
                 <img className="skill__logo" src={logo} alt="" width="40" height="40" loading="lazy" />
                 <span className="skill__name">{name}</span>
               </li>
+            ))}
+          </ul>
+          <ul className="skills__more" aria-label="More skills">
+            {moreSkills.map((name) => (
+              <li key={name}>{name}</li>
             ))}
           </ul>
         </Reveal>

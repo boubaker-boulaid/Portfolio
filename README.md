@@ -23,7 +23,7 @@ All copy and links live in `src/data` — no component changes needed.
 | --- | --- |
 | `site.js` | Name, tagline, email, phone, location, CV path, contact-form endpoint, social links, nav items, hero and impact stats |
 | `projects.js` | Project cards. `featured: true` cards are always shown; the rest appear under "View All Projects" |
-| `skills.js` | Skill grid (name + logo) |
+| `skills.js` | Skill grid (name + logo) and the extra skill tags under it |
 | `testimonials.js` | Testimonial slider (feedback from HOUATNOUR, in French) |
 
 ### Before publishing

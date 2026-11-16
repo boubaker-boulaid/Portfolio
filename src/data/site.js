@@ -6,7 +6,7 @@ export const site = {
   fullName: 'Boubaker Boulaid',
   role: 'Full-Stack Developer',
   tagline:
-    'I build modern web applications with Laravel, and turn ideas into powerful digital products.',
+    'Full Stack Web Developer with a passion for turning ideas into real-world, high-performance applications. Focused on clean code, modern architectures, and seamless user experiences. Currently deepening expertise in advanced full-stack development.',
   email: 'boubakerboulaid205@gmail.com',
   phone: '+212 6 93 30 31 30',
   location: 'Agadir region, Morocco',
@@ -42,18 +42,18 @@ export const socialLinks = [
 ];
 
 export const heroStats = [
-  { id: 'projects', label: 'Projects', value: '6', note: 'Completed', icon: 'arrow-up-right' },
+  { id: 'projects', label: 'Projects', value: '6+', note: 'Completed', icon: 'arrow-up-right' },
   {
     id: 'experience',
     label: 'Year of Experience',
-    value: '1',
+    value: '1+',
     note: 'Growing Stronger',
     icon: 'rocket',
   },
 ];
 
 export const impactStats = [
-  { id: 'projects', value: '6', label: 'Projects', icon: 'folder' },
+  { id: 'projects', value: '6+', label: 'Projects', icon: 'folder' },
   { id: 'endpoints', value: '47', label: 'API Endpoints Shipped', icon: 'code' },
-  { id: 'experience', value: '1', label: 'Year Experience', icon: 'clock' },
+  { id: 'experience', value: '1+', label: 'Year Experience', icon: 'clock' },
 ];
