@@ -6,7 +6,7 @@ export const testimonials = [
   {
     id: 'houatnour',
     quote:
-      'Boubaker a développé le back-end de notre système de gestion de stock avec sérieux et professionnalisme. Grâce à son travail, nos fichiers Excel et registres papier ont laissé place à une application fiable : chaque vente met à jour le stock et génère sa facture automatiquement. Un stagiaire rigoureux, autonome et à l’écoute, que nous recommandons vivement.',
+      'Un stagiaire sérieux et rigoureux : son application a remplacé nos fichiers Excel. Nous le recommandons vivement !',
     lang: 'fr',
     name: 'HOUATNOUR',
     role: 'Grossiste en viandes et volailles, Aoulouz',

@@ -10,7 +10,7 @@
 .hero__inner {
   position: relative;
   max-width: var(--page-max);
-  height: 23rem;
+  height: 26.5rem;
   margin-inline: auto;
 }
 
@@ -48,6 +48,27 @@
   color: var(--c-lime);
 }
 
+/* Last name in a heavy brush-marker face, like "RESULTS" in the UI reference. */
+.hero__last {
+  position: relative;
+  display: block;
+  width: max-content;
+  margin: 0.05rem 0 0 0.1rem;
+  font-family: var(--font-marker);
+  font-size: 4.35rem;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--c-lime);
+  transform: skewX(-7deg) rotate(-1.5deg);
+  transform-origin: left bottom;
+}
+
+.hero__dot {
+  color: var(--c-text);
+}
+
 .hero__crown {
   position: absolute;
   left: 17rem;
@@ -59,9 +80,9 @@
 
 .hero__scribble {
   position: absolute;
-  left: 12.5rem;
-  top: 4.72rem;
-  width: 10.2rem;
+  left: 0.6rem;
+  top: 88%;
+  width: 88%;
   color: var(--c-lavender);
 }
 
@@ -107,7 +128,7 @@
 .hero__arrow {
   position: absolute;
   left: 2.45rem;
-  top: 13.05rem;
+  top: 17rem;
   width: 2.3rem;
   color: var(--c-lavender);
 }
@@ -311,11 +332,14 @@
     width: min(3.4rem, 12vw);
   }
 
+  .hero__last {
+    font-size: min(4.35rem, 15vw);
+  }
+
   .hero__scribble {
-    left: auto;
-    right: -0.02em;
-    top: 96%;
-    width: 46%;
+    left: 0.15em;
+    top: 88%;
+    width: 88%;
   }
 
   .hero__lead {

@@ -64,4 +64,4 @@ The design was drawn on a 1024px artboard. From 1024px upwards the root font siz
 
 ## Credits
 
-Fonts: Plus Jakarta Sans, Satisfy and Damion (self-hosted via Fontsource). Technology logos from [Devicon](https://devicon.dev).
+Fonts: Plus Jakarta Sans, Satisfy, Damion and Permanent Marker (self-hosted via Fontsource). Technology logos from [Devicon](https://devicon.dev).

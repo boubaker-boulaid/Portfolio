@@ -34,8 +34,10 @@ export default function Hero() {
 
           <h1 id="hero-title" className="hero__title">
             <span className="hero__hi">Hi, I’m</span>{' '}
-            <span className="hero__name">
-              {site.name}.
+            <span className="hero__name">{site.name}</span>
+            <span className="hero__last">
+              {site.lastName}
+              <span className="hero__dot">.</span>
               <Scribble className="hero__scribble" />
             </span>
             <Crown className="hero__crown" />

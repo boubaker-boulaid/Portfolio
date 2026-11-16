@@ -2,10 +2,11 @@
 
 export const site = {
   name: 'Boubaker',
+  lastName: 'Boulaid',
   fullName: 'Boubaker Boulaid',
   role: 'Full-Stack Developer',
   tagline:
-    'I build secure Laravel back ends and responsive React front ends — REST APIs, dashboards and online stores that replace spreadsheets with real products.',
+    'I build modern web applications with Laravel, and turn ideas into powerful digital products.',
   email: 'boubakerboulaid205@gmail.com',
   phone: '+212 6 93 30 31 30',
   location: 'Agadir region, Morocco',
