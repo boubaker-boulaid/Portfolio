@@ -7,7 +7,7 @@ import './Footer.css';
 
 export default function Footer() {
   const ref = useMotion((_, root) => {
-    revealUp(['.footer__row', '.footer__copy'], { trigger: root, start: 'top 95%', y: 16, duration: 0.8 });
+    revealUp(['.footer__row', '.footer__copy'], { trigger: root, start: 'top 95%', from: { y: 16 }, duration: 0.8 });
   });
 
   return (

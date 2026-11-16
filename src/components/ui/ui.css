@@ -162,3 +162,37 @@
   color: var(--c-lime);
   transform: translateY(-2px);
 }
+
+/* ---------- Motion helpers (driven by src/motion) ---------- */
+
+/* Scroll progress line: only shown when motion is allowed. */
+.scroll-progress {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-progress {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 60;
+    display: block;
+    height: 2px;
+    background: var(--c-lime);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    pointer-events: none;
+  }
+}
+
+/*
+ * Magnetic hover (useMagnetic): GSAP moves --mx/--my, applied through the
+ * `translate` property so it stacks with any `transform` hover effect.
+ */
+.btn,
+.hero__cv,
+.socials__link,
+.project__link {
+  --mx: 0;
+  --my: 0;
+  translate: calc(var(--mx) * 1px) calc(var(--my) * 1px);
+}

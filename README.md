@@ -65,7 +65,8 @@ Smooth scrolling and animations use [Lenis](https://github.com/darkroomengineeri
 | `gsap.js` | Registers the plugins and sets the shared easing (`power3.out`). |
 | `useSmoothScroll.js` | Starts Lenis on GSAP's ticker, keeps ScrollTrigger in sync, and turns every `#anchor` link into a smooth scroll that respects the CSS `scroll-margin-top` / `scroll-padding-top` (sticky nav). |
 | `useMotion.js` | Hook each section uses for its own animations. Selectors are scoped to the section, and everything is reverted on unmount. |
-| `presets.js` | Shared moves: `revealUp`, `revealTiles`, `riseIn` (heading lines), `wipeIn` (script/marker words) and `drawIn` (hand-drawn doodles). |
+| `presets.js` | Shared moves: `enter`, `revealUp`, `revealTiles`, `introReveal` (section intros), `riseIn` (heading lines), `wipeIn` (script/marker words), `drawIn` (hand-drawn doodles), `countUp` (stat numbers) and `idle` (slow decorative drift). End states are always explicit and inline styles are cleared afterwards. |
+| `useMagnetic.js` | Buttons and icon links lean slightly toward the cursor (mouse/trackpad only), through the CSS `translate` property. |
 
 Each section keeps its animation next to its markup (`Hero.jsx`, `About.jsx`, `Projects.jsx` …). Project images use the CSS `translate` (scroll parallax, `--shift`) and `scale` (hover zoom) properties, so the two never conflict.
 

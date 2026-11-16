@@ -7,7 +7,7 @@ import { Burst } from './ui/Doodles.jsx';
 import { projects } from '../data/projects.js';
 import { gsap, ScrollTrigger } from '../motion/gsap.js';
 import { useMotion } from '../motion/useMotion.js';
-import { drawIn, revealTiles, revealUp } from '../motion/presets.js';
+import { drawIn, introReveal, revealTiles } from '../motion/presets.js';
 import './Projects.css';
 
 function ProjectCard({ project }) {
@@ -65,7 +65,7 @@ export default function Projects() {
 
   // Intro and the featured cards: revealed once, as the section arrives.
   const ref = useMotion(() => {
-    revealUp('.projects__intro > *', { trigger: '.projects__intro', start: 'top 80%' });
+    introReveal('.projects__intro');
     drawIn('.projects__burst path', {
       stagger: 0.08,
       delay: 0.4,
@@ -75,8 +75,7 @@ export default function Projects() {
     revealTiles('.project[data-featured]', {
       trigger: '.projects__grid',
       start: 'top 82%',
-      y: 56,
-      scale: 1,
+      from: { y: 56, scale: 1 },
       duration: 1,
       stagger: 0.12,
     });
@@ -100,7 +99,7 @@ export default function Projects() {
       });
 
       if (showAll) {
-        revealTiles('.project:not([data-featured])', { start: 'top 98%', y: 40, scale: 1, duration: 0.8, stagger: 0.1 });
+        revealTiles('.project:not([data-featured])', { start: 'top 98%', from: { y: 40, scale: 1 }, duration: 0.8, stagger: 0.1 });
       }
       ScrollTrigger.refresh();
     },

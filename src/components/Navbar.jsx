@@ -5,7 +5,7 @@ import Icon from './ui/Icon.jsx';
 import { navLinks } from '../data/site.js';
 import { useActiveSection } from '../hooks/useActiveSection.js';
 import { useMotion } from '../motion/useMotion.js';
-import { gsap } from '../motion/gsap.js';
+import { enter } from '../motion/presets.js';
 import './Navbar.css';
 
 export default function Navbar() {
@@ -14,7 +14,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const ref = useMotion(() => {
-    gsap.from('.nav__inner', { opacity: 0, y: -12, duration: 0.8, delay: 0.1 });
+    enter('.nav__inner', { y: -12 }, { duration: 0.8, delay: 0.1 });
   });
 
   useEffect(() => {
