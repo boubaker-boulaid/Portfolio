@@ -1,0 +1,164 @@
+/* ---------- Icon / doodle ---------- */
+.icon {
+  flex: none;
+}
+
+.doodle {
+  display: block;
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* ---------- Button ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 2.19rem;
+  padding-inline: 1.15rem 1.05rem;
+  border-radius: var(--r-pill);
+  background: var(--c-lime);
+  color: var(--c-ink);
+  font-size: var(--fs-nav);
+  font-weight: 700;
+  white-space: nowrap;
+  transition:
+    transform var(--t-fast) var(--ease),
+    background-color var(--t-fast) var(--ease),
+    box-shadow var(--t-base) var(--ease);
+}
+
+.btn--sm {
+  height: 1.97rem;
+  padding-inline: 1.05rem 0.95rem;
+  font-size: 0.72rem;
+}
+
+.btn:hover {
+  background: var(--c-lime-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 0.5rem 1.4rem rgba(223, 255, 0, 0.22);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn__icon {
+  display: grid;
+  place-items: center;
+  font-size: 0.86rem;
+  transition: transform var(--t-fast) var(--ease);
+}
+
+.btn__icon--badge {
+  width: 1.06rem;
+  height: 1.06rem;
+  border-radius: 50%;
+  background: var(--c-ink);
+  color: var(--c-lime);
+  font-size: 0.62rem;
+}
+
+.btn:hover .btn__icon--plain {
+  transform: translate(2px, -2px);
+}
+
+.btn:hover .btn__icon--badge {
+  transform: rotate(45deg);
+}
+
+/* ---------- Pill ---------- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  height: 1.19rem;
+  padding-inline: 0.62rem;
+  border-radius: var(--r-pill);
+  font-size: var(--fs-micro);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pill--lg {
+  height: 1.56rem;
+  padding-inline: 1rem;
+  font-size: 0.69rem;
+}
+
+.pill--lime {
+  background: var(--c-lime);
+  color: var(--c-ink);
+}
+
+.pill--lavender {
+  background: var(--c-lavender);
+  color: var(--c-ink);
+}
+
+.pill--dark {
+  background: var(--c-ink);
+  color: #fff;
+}
+
+.pill--outline {
+  height: 1.56rem;
+  padding-inline: 0.68rem 0.72rem;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  color: #fff;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: none;
+}
+
+.pill__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--c-lime);
+}
+
+/* ---------- Logo ---------- */
+.logo {
+  display: inline-block;
+  font-size: 1.82rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.07em;
+  color: #fff;
+}
+
+.logo--lg {
+  font-size: 2.15rem;
+}
+
+.logo__dot {
+  color: var(--c-lime);
+}
+
+/* ---------- Social links ---------- */
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+}
+
+.socials__link {
+  display: grid;
+  place-items: center;
+  font-size: 1.3rem;
+  color: #fff;
+  transition:
+    color var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--ease);
+}
+
+.socials__link:hover {
+  color: var(--c-lime);
+  transform: translateY(-2px);
+}
