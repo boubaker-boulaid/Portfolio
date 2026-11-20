@@ -190,8 +190,7 @@
  */
 .btn,
 .hero__cv,
-.socials__link,
-.project__link {
+.socials__link {
   --mx: 0;
   --my: 0;
   translate: calc(var(--mx) * 1px) calc(var(--my) * 1px);

@@ -22,7 +22,7 @@ All copy and links live in `src/data` — no component changes needed.
 | File | What it controls |
 | --- | --- |
 | `site.js` | Name, tagline, email, phone, location, CV path, contact-form endpoint, social links, nav items, hero and impact stats |
-| `projects.js` | Project cards. `featured: true` cards are always shown; the rest appear under "View All Projects" |
+| `projects.js` | Project cards **and** each project's detail page (summary, stats, features, tech stack, screenshots, GitHub link). `featured: true` cards are always shown; the rest appear under "View All Projects". Content comes from the READMEs in `../projects/` |
 | `skills.js` | Skill grid (name + logo) and the extra skill tags under it |
 | `testimonials.js` | Testimonial slider (feedback from HOUATNOUR, in French) |
 
@@ -32,6 +32,14 @@ All copy and links live in `src/data` — no component changes needed.
 - [ ] Confirm the stacks and repositories marked `TODO` in `src/data/projects.js`.
 - [ ] Optional: set `formEndpoint` in `src/data/site.js` (e.g. Formspree) so the contact form sends messages directly instead of opening the visitor's email app.
 - [ ] Re-export `public/Boubaker-Boulaid-CV.pdf` whenever the resume in `../info` changes.
+
+## Pages and hosting
+
+The site has real page URLs: `/` (the one-page home) and `/projects/<slug>` (one detail page per project, e.g. `/projects/lume-parfums`). Routing is a small History-API router in `src/router.js`, with no routing library. Back and Forward restore the scroll position, and nav links on a detail page lead back to the home sections (`/#about`).
+
+**Hosting:** the server must answer every path with `index.html` (an "SPA fallback"), or a direct visit to `/projects/...` returns 404. `npm run dev` and `npm run preview` already do this. On Netlify, add `public/_redirects` with `/*  /index.html  200`. On Vercel, add a rewrite of `/(.*)` to `/index.html`.
+
+To add a project: drop its screenshots in `src/assets/projects/<folder>/`, add their sizes to `sizes` in `projects.js`, and add an entry to `projects`.
 
 ## Project structure
 
@@ -43,6 +51,8 @@ src/
     base.css               reset, fluid root size, shared helpers
   components/
     Navbar, Hero, About, Projects, Impact, Contact (form), ContactCta, Footer
+  pages/                   Home, ProjectDetail (/projects/<slug>), NotFound
+  router.js                History-API router: paths, Back/Forward scroll restore
     ui/                    Button, Pill, Icon, Logo, SocialLinks, Reveal, Doodles
   hooks/useActiveSection   scroll-spy for the navigation
   motion/                  Lenis smooth scrolling and GSAP section animations

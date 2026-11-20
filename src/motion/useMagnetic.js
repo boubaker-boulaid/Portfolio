@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { gsap, MOTION_OK } from './gsap.js';
 
-const SELECTOR = '.btn, .hero__cv, .socials__link, .project__link';
+const SELECTOR = '.btn, .hero__cv, .socials__link';
 const STRENGTH = 0.28; // share of the cursor offset the element follows
 const MAX = 8; // px — a lean, not a chase
 

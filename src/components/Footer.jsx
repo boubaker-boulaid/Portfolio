@@ -1,5 +1,6 @@
 import Logo from './ui/Logo.jsx';
 import SocialLinks from './ui/SocialLinks.jsx';
+import Link from './ui/Link.jsx';
 import { navLinks, site } from '../data/site.js';
 import { useMotion } from '../motion/useMotion.js';
 import { revealUp } from '../motion/presets.js';
@@ -19,9 +20,9 @@ export default function Footer() {
             <ul className="footer__links">
               {navLinks.map(({ id, label }) => (
                 <li key={id}>
-                  <a className="footer__link" href={`#${id}`}>
+                  <Link className="footer__link" to={`/#${id}`}>
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
