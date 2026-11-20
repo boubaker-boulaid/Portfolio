@@ -91,4 +91,4 @@ Do not add `scroll-behavior: smooth` back to `html`: ScrollTrigger re-applies it
 
 ## Credits
 
-Motion: GSAP and Lenis. Fonts: Plus Jakarta Sans, Satisfy, Damion and Permanent Marker (self-hosted via Fontsource). Technology logos from [Devicon](https://devicon.dev).
+Motion: GSAP and Lenis. Fonts: Plus Jakarta Sans, Satisfy, Damion (self-hosted via Fontsource). Technology logos from [Devicon](https://devicon.dev).

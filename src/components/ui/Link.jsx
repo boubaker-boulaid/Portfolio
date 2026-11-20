@@ -1,4 +1,4 @@
-import { navigate, replaceHash, splitHref } from '../../router.js';
+import { navigate, splitHref } from '../../router.js';
 import { scrollToHash } from '../../motion/useSmoothScroll.js';
 
 /**
@@ -17,7 +17,6 @@ export default function Link({ to, onClick, children, ...rest }) {
     const { path, hash } = splitHref(to);
     if (path === window.location.pathname && hash) {
       scrollToHash(hash);
-      replaceHash(hash);
     } else {
       navigate(to);
     }

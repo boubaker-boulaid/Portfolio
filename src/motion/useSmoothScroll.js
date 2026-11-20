@@ -83,8 +83,7 @@ export function useSmoothScroll() {
       if (!scrollToHash(hash)) return;
 
       event.preventDefault();
-      // Record the section without a new history entry (Back = previous page).
-      if (window.location.hash !== hash) window.history.replaceState(window.history.state, '', hash);
+      // The address bar stays clean: no #section is written into the URL.
 
       // The skip link must also move keyboard focus.
       if (hash === '#main') {
