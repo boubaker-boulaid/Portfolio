@@ -424,6 +424,14 @@
   color: var(--c-ink-soft);
 }
 
+/* On big screens the full-width phone board looks oversized: keep it smaller and centred. */
+@media (min-width: 1024px) {
+  .pd-mobile .shot {
+    max-width: 44rem;
+    margin-inline: auto;
+  }
+}
+
 /* ---------- Next project ---------- */
 .pd-next {
   position: relative;
