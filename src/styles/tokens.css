@@ -19,7 +19,6 @@
     'Segoe UI', sans-serif;
   --font-script: 'Satisfy', 'Brush Script MT', cursive;
   --font-hand: 'Damion', 'Brush Script MT', cursive;
-  --font-marker: 'Permanent Marker', 'Marker Felt', 'Comic Sans MS', cursive;
 
   --tracking: -0.035em; /* Plus Jakarta Sans runs wide; the design sets it tight */
   --tracking-tight: -0.05em;

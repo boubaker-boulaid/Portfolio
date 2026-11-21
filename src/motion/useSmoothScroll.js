@@ -7,9 +7,10 @@ let lenis = null;
 
 /**
  * Scrolls to an in-page anchor. Uses Lenis when it is running, otherwise the
- * browser (instant for reduced-motion visitors, see base.css).
+ * browser (instant for reduced-motion visitors). `immediate` skips the
+ * glide, for arriving on a section from another page.
  */
-export function scrollToHash(hash) {
+export function scrollToHash(hash, { immediate = false } = {}) {
   const id = decodeURIComponent(hash.replace(/^#/, ''));
   const target = id && document.getElementById(id);
   if (!target) return false;
@@ -18,13 +19,28 @@ export function scrollToHash(hash) {
   if (lenis) {
     // Lenis already honours the CSS scroll-margin-top / scroll-padding-top
     // (sticky nav offset), exactly like a native anchor jump.
-    lenis.scrollTo(top, { duration: 1.15 });
+    lenis.scrollTo(top, immediate ? { immediate: true, force: true } : { duration: 1.15 });
   } else if (top === 0) {
     window.scrollTo({ top: 0 });
   } else {
     target.scrollIntoView();
   }
   return true;
+}
+
+/** Jumps straight to a scroll position (page changes, Back/Forward). */
+export function jumpTo(y) {
+  if (lenis) lenis.scrollTo(y, { immediate: true, force: true });
+  else window.scrollTo(0, y);
+}
+
+/** Pauses page scrolling, e.g. while a modal viewer is open. */
+export function lockScroll(locked) {
+  if (lenis) {
+    if (locked) lenis.stop();
+    else lenis.start();
+  }
+  document.documentElement.style.overflow = locked ? 'hidden' : '';
 }
 
 /**
@@ -67,7 +83,7 @@ export function useSmoothScroll() {
       if (!scrollToHash(hash)) return;
 
       event.preventDefault();
-      if (window.location.hash !== hash) window.history.pushState(null, '', hash);
+      // The address bar stays clean: no #section is written into the URL.
 
       // The skip link must also move keyboard focus.
       if (hash === '#main') {

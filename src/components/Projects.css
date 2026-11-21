@@ -61,6 +61,8 @@
 
 .project__frame {
   display: flex;
+  color: inherit;
+  text-decoration: none;
   flex-direction: column;
   width: 100%;
   overflow: hidden;
@@ -82,7 +84,7 @@
 /* The screenshot fills the whole media area. */
 .project__media {
   position: relative;
-  aspect-ratio: 900 / 511; /* the screenshots' own shape: fills the box, nothing cut */
+  aspect-ratio: 16 / 10; /* the screenshots' own shape (1440 × 900) */
   overflow: hidden;
   background: #17161b;
 }
@@ -176,12 +178,12 @@
     transform var(--t-fast) var(--ease);
 }
 
-.project__link:hover,
-.project:hover .project__link {
+.project:hover .project__link,
+.project__frame:focus-visible .project__link {
   background: var(--c-lime);
 }
 
-.project__link:hover {
+.project:hover .project__link {
   transform: rotate(45deg);
 }
 

@@ -2,19 +2,22 @@ import { useEffect, useMemo, useState } from 'react';
 import Logo from './ui/Logo.jsx';
 import Button from './ui/Button.jsx';
 import Icon from './ui/Icon.jsx';
+import Link from './ui/Link.jsx';
 import { navLinks } from '../data/site.js';
 import { useActiveSection } from '../hooks/useActiveSection.js';
 import { useMotion } from '../motion/useMotion.js';
-import { gsap } from '../motion/gsap.js';
+import { enter } from '../motion/presets.js';
 import './Navbar.css';
 
-export default function Navbar() {
+export default function Navbar({ onHome = true }) {
   const ids = useMemo(() => navLinks.map((link) => link.id), []);
-  const [active, select] = useActiveSection(ids);
+  const [spied, select] = useActiveSection(ids);
+  // Scroll-spy only means something on the home page; elsewhere we are inside "Projects".
+  const active = onHome ? spied : 'projects';
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const ref = useMotion(() => {
-    gsap.from('.nav__inner', { opacity: 0, y: -12, duration: 0.8, delay: 0.1 });
+    enter('.nav__inner', { y: -12 }, { duration: 0.8, delay: 0.1 });
   });
 
   useEffect(() => {
@@ -52,23 +55,23 @@ export default function Navbar() {
           <ul className="nav__links">
             {navLinks.map(({ id, label }) => (
               <li key={id}>
-                <a
+                <Link
                   className={`nav__link ${active === id ? 'is-active' : ''}`.trim()}
-                  href={`#${id}`}
+                  to={`/#${id}`}
                   aria-current={active === id ? 'true' : undefined}
                   onClick={() => go(id)}
                 >
                   {label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
-          <Button className="nav__cta nav__cta--menu" href="#contact" iconStyle="badge" onClick={() => go('contact')}>
+          <Button className="nav__cta nav__cta--menu" to="/#contact" iconStyle="badge" onClick={() => go('contact')}>
             Let’s Talk
           </Button>
         </nav>
 
-        <Button className="nav__cta nav__cta--bar" href="#contact" iconStyle="badge" onClick={() => go('contact')}>
+        <Button className="nav__cta nav__cta--bar" to="/#contact" iconStyle="badge" onClick={() => go('contact')}>
           Let’s Talk
         </Button>
 

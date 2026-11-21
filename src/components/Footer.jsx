@@ -1,5 +1,6 @@
 import Logo from './ui/Logo.jsx';
 import SocialLinks from './ui/SocialLinks.jsx';
+import Link from './ui/Link.jsx';
 import { navLinks, site } from '../data/site.js';
 import { useMotion } from '../motion/useMotion.js';
 import { revealUp } from '../motion/presets.js';
@@ -7,7 +8,7 @@ import './Footer.css';
 
 export default function Footer() {
   const ref = useMotion((_, root) => {
-    revealUp(['.footer__row', '.footer__copy'], { trigger: root, start: 'top 95%', y: 16, duration: 0.8 });
+    revealUp(['.footer__row', '.footer__copy'], { trigger: root, start: 'top 95%', from: { y: 16 }, duration: 0.8 });
   });
 
   return (
@@ -19,9 +20,9 @@ export default function Footer() {
             <ul className="footer__links">
               {navLinks.map(({ id, label }) => (
                 <li key={id}>
-                  <a className="footer__link" href={`#${id}`}>
+                  <Link className="footer__link" to={`/#${id}`}>
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

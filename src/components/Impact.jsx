@@ -6,7 +6,8 @@ import { QuoteMark } from './ui/Doodles.jsx';
 import { impactStats } from '../data/site.js';
 import { testimonials } from '../data/testimonials.js';
 import { useMotion } from '../motion/useMotion.js';
-import { drawIn, revealUp } from '../motion/presets.js';
+import { countUp, drawIn, introReveal, revealUp } from '../motion/presets.js';
+import { gsap } from '../motion/gsap.js';
 import './Impact.css';
 
 const initials = (name) =>
@@ -67,15 +68,25 @@ function Testimonials() {
 }
 
 export default function Impact() {
-  const ref = useMotion(() => {
-    revealUp('.impact__card', { y: 40, duration: 1, start: 'top 80%' });
-    revealUp('.impact__intro > *', { trigger: '.impact__card', start: 'top 80%', delay: 0.15 });
+  const ref = useMotion((_, root) => {
+    revealUp('.impact__card', { from: { y: 40 }, duration: 1, start: 'top 80%' });
+    introReveal('.impact__intro');
     revealUp('.impact__stat', { trigger: '.impact__stats', start: 'top 85%', delay: 0.3, stagger: 0.1 });
-    revealUp('.impact__quote', { y: 40, duration: 1, start: 'top 85%', delay: 0.15 });
+    revealUp('.impact__quote', { from: { y: 40 }, duration: 1, start: 'top 85%', delay: 0.15 });
+
+    // The figures count up as the stats arrive.
+    const restore = gsap.utils.toArray('.impact__value', root).map((el, i) =>
+      countUp(el, {
+        delay: 0.45 + i * 0.1,
+        scrollTrigger: { trigger: '.impact__stats', start: 'top 85%', once: true },
+      }),
+    );
     drawIn('.testimonial__mark path', {
       delay: 0.5,
       scrollTrigger: { trigger: '.impact__quote', start: 'top 85%', once: true },
     });
+
+    return () => restore.forEach((undo) => undo());
   });
 
   return (

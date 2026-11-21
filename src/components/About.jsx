@@ -5,13 +5,13 @@ import { skills } from '../data/skills.js';
 import aboutPortrait from '../assets/portraits/about-portrait.webp';
 import { gsap, SplitText } from '../motion/gsap.js';
 import { useMotion } from '../motion/useMotion.js';
-import { drawIn, revealTiles, revealUp, wipeIn } from '../motion/presets.js';
+import { drawIn, enter, idle, revealTiles, revealUp, wipeIn } from '../motion/presets.js';
 import './About.css';
 
 export default function About() {
   const ref = useMotion(() => {
     // Photo: the frame lifts in while the picture un-masks and settles.
-    revealUp('.about__photo', { y: 40, duration: 1.1, start: 'top 80%' });
+    revealUp('.about__photo', { from: { y: 40 }, duration: 1.1, start: 'top 80%' });
     gsap.fromTo(
       '.polaroid__img',
       { clipPath: 'inset(100% 0% 0% 0%)', scale: 1.18 },
@@ -28,8 +28,8 @@ export default function About() {
     // Heading: label, then the line, then the script word written in.
     const heading = gsap.timeline({ scrollTrigger: { trigger: '.about__copy', start: 'top 80%', once: true } });
     heading
-      .from('.about__copy .pill', { opacity: 0, y: 12, duration: 0.6 })
-      .from('.about__hey', { opacity: 0, y: 20, duration: 0.8 }, '-=0.35')
+      .add(enter('.about__copy .pill', { y: 12 }, { duration: 0.6 }))
+      .add(enter('.about__hey', { y: 20 }, { duration: 0.8 }), '-=0.35')
       .add(wipeIn('.about__name', { duration: 0.8 }), '-=0.45')
       .add(drawIn('.about__heart path', { duration: 0.7 }), '-=0.35')
       .add(drawIn('.about__sparks path', { duration: 0.5, stagger: 0.08 }), '<');
@@ -48,20 +48,23 @@ export default function About() {
       },
     );
 
-    revealUp('.about__hand', { trigger: '.about__hand', start: 'top 92%', y: 12 });
+    revealUp('.about__hand', { start: 'top 92%', from: { y: 12 } });
     drawIn('.about__underline path', {
       delay: 0.3,
       scrollTrigger: { trigger: '.about__hand', start: 'top 92%', once: true },
     });
 
     // Skills: label, then the tiles in reading order.
-    revealUp('.skills__title', { y: 16, start: 'top 85%' });
+    revealUp('.skills__title', { from: { y: 16 }, start: 'top 85%' });
     drawIn('.skills__burst path', {
       stagger: 0.08,
       delay: 0.2,
       scrollTrigger: { trigger: '.skills__title', start: 'top 85%', once: true },
     });
     revealTiles('.skill', { trigger: '.skills__grid', start: 'top 85%' });
+
+    // The sparks by the photo keep a slow, small drift.
+    idle('.about__sparks', { y: -4, rotation: '+=6', duration: 2.4, delay: 1.5 });
   });
 
   return (

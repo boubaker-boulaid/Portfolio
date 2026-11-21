@@ -1,9 +1,10 @@
+import Link from './Link.jsx';
 import './ui.css';
 
 export default function Logo({ size = 'md', onClick }) {
   return (
-    <a className={`logo logo--${size}`} href="#home" aria-label="Boubaker — back to top" onClick={onClick}>
+    <Link className={`logo logo--${size}`} to="/#home" aria-label="Boubaker — home" onClick={onClick}>
       bK<span className="logo__dot">.</span>
-    </a>
+    </Link>
   );
 }

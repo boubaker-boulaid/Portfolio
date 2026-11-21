@@ -4,27 +4,29 @@ import Pill from './ui/Pill.jsx';
 import Icon from './ui/Icon.jsx';
 import Reveal from './ui/Reveal.jsx';
 import { Burst } from './ui/Doodles.jsx';
-import { projects } from '../data/projects.js';
+import Link from './ui/Link.jsx';
+import { projectPath, projects } from '../data/projects.js';
 import { gsap, ScrollTrigger } from '../motion/gsap.js';
 import { useMotion } from '../motion/useMotion.js';
-import { drawIn, revealTiles, revealUp } from '../motion/presets.js';
+import { drawIn, introReveal, revealTiles } from '../motion/presets.js';
 import './Projects.css';
 
 function ProjectCard({ project }) {
-  const { title, category, tone, stack, image, alt, url } = project;
+  const { title, category, tone, stack, cover } = project;
   return (
     <Reveal as="li" className="project" data-featured={project.featured || undefined}>
       <Pill tone={tone} className="project__badge">
         {category}
       </Pill>
-      <article className="project__frame">
+      {/* The whole card is one link to the project's detail page. */}
+      <Link className="project__frame" to={projectPath(project)}>
         <div className="project__media">
           <img
             className="project__shot"
-            src={image}
-            alt={alt}
-            width="900"
-            height="511"
+            src={cover.src}
+            alt=""
+            width={cover.width}
+            height={cover.height}
             loading="lazy"
             decoding="async"
           />
@@ -41,19 +43,11 @@ function ProjectCard({ project }) {
               ))}
             </p>
           </div>
-          {url && (
-            <a
-              className="project__link"
-              href={url}
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label={`View ${title}`}
-            >
-              <Icon name="arrow-up-right" />
-            </a>
-          )}
+          <span className="project__link" aria-hidden="true">
+            <Icon name="arrow-up-right" />
+          </span>
         </div>
-      </article>
+      </Link>
     </Reveal>
   );
 }
@@ -65,7 +59,7 @@ export default function Projects() {
 
   // Intro and the featured cards: revealed once, as the section arrives.
   const ref = useMotion(() => {
-    revealUp('.projects__intro > *', { trigger: '.projects__intro', start: 'top 80%' });
+    introReveal('.projects__intro');
     drawIn('.projects__burst path', {
       stagger: 0.08,
       delay: 0.4,
@@ -75,8 +69,7 @@ export default function Projects() {
     revealTiles('.project[data-featured]', {
       trigger: '.projects__grid',
       start: 'top 82%',
-      y: 56,
-      scale: 1,
+      from: { y: 56, scale: 1 },
       duration: 1,
       stagger: 0.12,
     });
@@ -100,7 +93,7 @@ export default function Projects() {
       });
 
       if (showAll) {
-        revealTiles('.project:not([data-featured])', { start: 'top 98%', y: 40, scale: 1, duration: 0.8, stagger: 0.1 });
+        revealTiles('.project:not([data-featured])', { start: 'top 98%', from: { y: 40, scale: 1 }, duration: 0.8, stagger: 0.1 });
       }
       ScrollTrigger.refresh();
     },

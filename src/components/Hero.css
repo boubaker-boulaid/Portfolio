@@ -10,7 +10,7 @@
 .hero__inner {
   position: relative;
   max-width: var(--page-max);
-  height: 28.5rem;
+  height: 29.5rem;
   margin-inline: auto;
 }
 
@@ -48,20 +48,21 @@
   color: var(--c-lime);
 }
 
-/* Last name in a heavy brush-marker face, like "RESULTS" in the UI reference. */
+/* Last name in the same handwritten script as "Together" in the closing banner. */
 .hero__last {
   position: relative;
   display: block;
   width: max-content;
-  margin: 0.05rem 0 0 0.1rem;
-  font-family: var(--font-marker);
-  font-size: 4.35rem;
+  /* em-based so the tall script ascenders clear "Boubaker" at every size. */
+  margin: 0.24em 0 0 0.08em;
+  font-family: var(--font-script);
+  font-size: 5rem;
   font-weight: 400;
-  line-height: 1.05;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
+  line-height: 0.95;
+  letter-spacing: 0;
+  word-spacing: 0;
   color: var(--c-lime);
-  transform: skewX(-7deg) rotate(-1.5deg);
+  transform: rotate(-5deg);
   transform-origin: left bottom;
 }
 
@@ -334,7 +335,7 @@
   }
 
   .hero__last {
-    font-size: min(4.35rem, 15vw);
+    font-size: min(5rem, 17vw);
   }
 
   .hero__scribble {

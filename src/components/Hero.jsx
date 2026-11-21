@@ -7,7 +7,7 @@ import { heroStats, site } from '../data/site.js';
 import heroPortrait from '../assets/portraits/hero-portrait.webp';
 import { gsap } from '../motion/gsap.js';
 import { useMotion } from '../motion/useMotion.js';
-import { drawIn, riseIn, wipeIn } from '../motion/presets.js';
+import { countUp, drawIn, enter, idle, riseIn, wipeIn } from '../motion/presets.js';
 import './Hero.css';
 
 function StatCard({ stat }) {
@@ -30,29 +30,54 @@ export default function Hero() {
   const ref = useMotion(({ desktop }, root) => {
     // Entrance: copy builds line by line while the portrait settles in.
     const tl = gsap.timeline({ delay: 0.15 });
-    tl.from('.hero__copy .pill', { opacity: 0, y: 12, duration: 0.6 })
+    tl.add(enter('.hero__copy .pill', { y: 12 }, { duration: 0.6 }))
       .add(riseIn(['.hero__hi', '.hero__name']), '-=0.35')
       .add(wipeIn('.hero__last', { duration: 0.85 }), '-=0.6')
       .add(drawIn('.hero__scribble path', { duration: 0.7 }), '-=0.25')
-      .from('.hero__crown', { opacity: 0, y: -10, scale: 0.8, duration: 0.6 }, '<')
-      .from('.hero__lead', { opacity: 0, y: 16, duration: 0.8 }, '-=0.55')
-      .from('.hero__actions > *', { opacity: 0, y: 14, duration: 0.7, stagger: 0.08 }, '-=0.6')
-      .from('.hero__arrow', { opacity: 0, duration: 0.8 }, '-=0.5');
+      .add(enter('.hero__crown', { y: -10, scale: 0.8 }, { duration: 0.6 }), '<')
+      .add(enter('.hero__lead', { y: 16 }, { duration: 0.8 }), '-=0.55')
+      .add(enter('.hero__actions > *', { y: 14 }, { duration: 0.7, stagger: 0.08 }), '-=0.6')
+      .add(enter('.hero__arrow', { y: 0 }, { duration: 0.8 }), '-=0.5');
 
-    tl.from('.hero__blob', { opacity: 0, scale: 0.9, transformOrigin: '50% 60%', duration: 1.4, ease: 'expo.out' }, 0.2)
+    tl.add(enter('.hero__blob', { y: 0, scale: 0.9, transformOrigin: '50% 60%' }, { duration: 1.4, ease: 'expo.out' }), 0.2)
       // Fade the photo quickly (so the blob never tints it) but let it settle slowly.
-      .from('.hero__portrait', { y: 36, duration: 1.3, ease: 'expo.out' }, 0.15)
-      .from('.hero__portrait', { opacity: 0, duration: 0.45, ease: 'power1.out' }, 0.15)
+      .fromTo('.hero__portrait', { y: 36 }, { y: 0, duration: 1.3, ease: 'expo.out' }, 0.15)
+      .fromTo('.hero__portrait', { opacity: 0 }, { opacity: 1, duration: 0.45, ease: 'power1.out' }, 0.15)
       // Stat cards float with a CSS animation on transform, so only fade them.
-      .from('.stat-card', { opacity: 0, duration: 0.8, stagger: 0.15 }, 1.05)
-      .from('.hero__rail > *', { opacity: 0, x: 10, duration: 0.6, stagger: 0.06 }, 0.9);
+      .fromTo('.stat-card', { opacity: 0 }, { opacity: 1, duration: 0.8, stagger: 0.15, clearProps: 'opacity' }, 1.05)
+      .add(enter('.hero__rail > *', { y: 0, x: 10 }, { duration: 0.6, stagger: 0.06 }), 0.9);
 
-    // Subtle depth on the way out: the portrait drifts slower than the page.
+    // The stat values count up as their cards appear.
+    const restore = gsap.utils
+      .toArray('.stat-card__value', root)
+      .map((el, i) => countUp(el, { delay: 1.3 + i * 0.15, duration: 1.2 }));
+
+    // Gentle life once everything has landed: the blob breathes, the crown
+    // and the bolt drift. Small, slow and on separate elements from the
+    // entrance tweens so the two never fight.
+    gsap.to('.hero__blob path', {
+      scale: 1.035,
+      rotation: 1.5,
+      transformOrigin: '50% 50%',
+      duration: 5,
+      ease: 'sine.inOut',
+      yoyo: true,
+      repeat: -1,
+      delay: 1.6,
+    });
+    // Both start after their own entrance has finished and cleared its styles.
+    idle('.hero__crown', { y: -3, rotation: '+=4', duration: 2.2, delay: 2.8 });
+    idle('.hero__bolt', { y: -6, delay: 2.4 });
+
+    // Subtle depth on the way out: the portrait drifts slower than the page
+    // and the copy eases upward, both tied to the scroll position.
     if (desktop) {
       const out = { trigger: root, start: 'top top', end: 'bottom top', scrub: true };
-      gsap.to('.hero__portrait', { yPercent: 7, ease: 'none', scrollTrigger: out });
-      gsap.to('.hero__blob', { yPercent: 4, ease: 'none', scrollTrigger: out });
+      gsap.to('.hero__visual', { yPercent: 7, ease: 'none', scrollTrigger: out });
+      gsap.to('.hero__inner > .hero__copy', { y: -60, ease: 'none', scrollTrigger: out });
     }
+
+    return () => restore.forEach((undo) => undo());
   });
 
   return (

@@ -4,7 +4,6 @@ import { createRoot } from 'react-dom/client';
 import '@fontsource-variable/plus-jakarta-sans';
 import '@fontsource/satisfy';
 import '@fontsource/damion';
-import '@fontsource/permanent-marker';
 
 import './styles/tokens.css';
 import './styles/base.css';

@@ -74,6 +74,12 @@ const ICONS = {
       <circle cx="12" cy="9.5" r="2.5" />
     </g>
   ),
+  lock: (
+    <g {...stroke} strokeWidth={2}>
+      <rect x="4.5" y="10.5" width="15" height="10" rx="2" />
+      <path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" />
+    </g>
+  ),
   menu: (
     <g {...stroke} strokeWidth={2.2}>
       <path d="M4 7h16M4 12h16M4 17h16" />
