@@ -17,7 +17,7 @@ export const site = {
    * that accepts a JSON POST. When empty, the contact form opens the visitor's
    * email app with the message already filled in.
    */
-  formEndpoint: '',
+  formEndpoint: 'https://formspree.io/f/xqpqdrpj',
   social: {
     github: 'https://github.com/boubaker-boulaid',
     linkedin: 'https://www.linkedin.com/in/boubaker-boulaid',

@@ -1,7 +1,6 @@
 import Button from './ui/Button.jsx';
 import Reveal from './ui/Reveal.jsx';
 import { PaperPlane, Scribble } from './ui/Doodles.jsx';
-import { mailto } from '../data/site.js';
 import { gsap } from '../motion/gsap.js';
 import { useMotion } from '../motion/useMotion.js';
 import { drawIn, enter, idle } from '../motion/presets.js';
@@ -32,7 +31,7 @@ export default function ContactCta() {
             </span>
           </h2>
           <p className="cta__text">Have a project in mind? Let’s turn your ideas into reality.</p>
-          <Button className="cta__button" href={mailto}>
+          <Button className="cta__button" to="/#contact">
             Get In Touch
           </Button>
         </Reveal>

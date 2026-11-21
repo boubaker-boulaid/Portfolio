@@ -16,8 +16,9 @@ const EMPTY = { name: '', email: '', subject: '', message: '' };
  * With one (e.g. Formspree), it posts the fields as JSON and shows the result.
  */
 async function send(fields) {
+  const subject = fields.subject || `Portfolio contact from ${fields.name}`;
+
   if (!site.formEndpoint) {
-    const subject = fields.subject || `Portfolio contact from ${fields.name}`;
     const body = `${fields.message}\n\n— ${fields.name} (${fields.email})`;
     window.location.href = `${mailto}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     return 'mail-app';
@@ -26,7 +27,8 @@ async function send(fields) {
   const response = await fetch(site.formEndpoint, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify(fields),
+    // Formspree uses `_subject` as the subject of the email it sends you.
+    body: JSON.stringify({ ...fields, _subject: subject }),
   });
   if (!response.ok) throw new Error(`Form endpoint answered ${response.status}`);
   return 'sent';
